@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="ja"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>国別 情報漏洩一覧 2026+パスワードツール</title>
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);--bg:#f6f7f9;--card:#fff;--tx:#1b1f24;--mu:#667085;--ac:#d9480f;--ac2:#1c7ed6;--bd:#e4e7ec}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#111418;--card:#1a1f26;--tx:#e8eaed;--mu:#9aa4b2;--ac:#ff7a45;--ac2:#4dabf7;--bd:#2c333d}}
+:root[data-theme="dark"]{--bg:#111418;--card:#1a1f26;--tx:#e8eaed;--mu:#9aa4b2;--ac:#ff7a45;--ac2:#4dabf7;--bd:#2c333d}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--tx);font-family:-apple-system,"Hiragino Sans","Noto Sans JP",sans-serif;line-height:1.6;padding:14px}
+h1{font-size:20px;margin:6px 0}h2{font-size:15px;margin:0 0 10px}
+.sub,.note{color:var(--mu);font-size:11px}.sub{margin-bottom:12px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:12px;margin-bottom:12px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:14px;margin-bottom:12px;min-width:0}
+.grid .card{margin:0}
+.row{display:grid;grid-template-columns:96px 1fr 70px;gap:6px;align-items:center;font-size:12px;margin:5px 0}
+.l{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.bar{height:14px;background:var(--bd);border-radius:7px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--ac2);border-radius:7px}.bar i.c{background:var(--ac)}
+.v{text-align:right;color:var(--mu)}
+details{background:var(--card);border:1px solid var(--bd);border-radius:12px;margin-bottom:10px;padding:10px 14px}
+summary{cursor:pointer;font-weight:600;font-size:15px}summary span{font-weight:400;font-size:12px;color:var(--mu);margin-left:6px}
+.tw{overflow-x:auto;margin-top:8px}table{border-collapse:collapse;width:100%;min-width:820px;font-size:12px}
+th,td{border-bottom:1px solid var(--bd);padding:7px;text-align:left;vertical-align:top}th{color:var(--mu)}
+.tag{display:inline-block;padding:0 6px;border-radius:9px;font-size:10px;border:1px solid var(--bd);color:var(--mu)}.tag.m{color:var(--ac);border-color:var(--ac)}
+.skip{position:absolute;left:-999px;top:0;background:var(--ac2);color:#fff;padding:10px 14px;z-index:40;border-radius:0 0 8px 0}.skip:focus{left:0}
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:var(--bg);padding:6px 0 10px;border-bottom:1px solid var(--bd);margin-bottom:10px}
+.tb{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.btn{min-height:44px;min-width:44px;padding:8px 14px;font-size:14px;line-height:1.2;border-radius:10px;border:2px solid var(--bd);background:var(--card);color:var(--tx);cursor:pointer;display:inline-flex;gap:6px;align-items:center;justify-content:center}
+.btn:hover{border-color:var(--ac2)}.btn[aria-pressed="true"]{background:var(--ac2);border-color:var(--ac2);color:#fff}
+.grp{display:inline-flex;align-items:center;gap:4px;border:2px solid var(--bd);border-radius:12px;padding:2px 6px;background:var(--card);font-size:13px}
+.grp .btn{padding:6px 12px;border-width:1px}
+:focus-visible{outline:3px solid var(--ac);outline-offset:2px}
+html[data-size="s"] main{zoom:1}html[data-size="m"] main{zoom:1.15}html[data-size="l"] main{zoom:1.4}
+summary{min-height:44px;display:flex;align-items:center}.sub,.note{font-size:12px}
+dialog{max-width:640px;width:calc(100% - 28px);max-height:85%;overflow:auto;border:2px solid var(--bd);border-radius:14px;background:var(--card);color:var(--tx);padding:18px}dialog::backdrop{background:rgba(0,0,0,.6)}
+dialog h2{font-size:18px}dialog h3{font-size:15px;margin:14px 0 4px}dialog p,dialog li{font-size:14px;line-height:1.8;margin:2px 0}
+#toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:#111;color:#fff;padding:10px 16px;border-radius:10px;font-size:14px;opacity:0;pointer-events:none;z-index:50;max-width:90%}#toast.show{opacity:1}
+@media print{header.top,.skip,#toast,dialog{display:none!important}body{background:#fff;color:#000;padding:0}main{zoom:1!important}.card,details{break-inside:avoid}.tw{overflow:visible}table{min-width:0;font-size:10px}.bar{border:1px solid #888}}
+.rk{display:inline-block;min-width:36px;text-align:center;padding:2px 6px;border-radius:8px;font-weight:700;font-size:13px;color:#fff;border:2px solid transparent}
+.rk-SS{background:#8f1d14}.rk-A{background:#c2410c}.rk-B{background:#8a5a00}.rk-C{background:#1864ab}.rk-D{background:#5b6573}.rk-E{background:transparent;color:var(--tx);border-color:var(--mu)}
+.ctl{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:8px}.ctl>span{font-size:13px;font-weight:600}
+@media print{.ctl{display:none}}
+
+:root{--ok:#1b7a3d}@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--ok:#69db7c}}:root[data-theme="dark"]{--ok:#69db7c}
+a.btn{text-decoration:none;color:var(--tx)}.btn.p{background:var(--ac2);border-color:var(--ac2);color:#fff}.btn.d{border-color:var(--ac);color:var(--ac)}
+.r{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:6px 0}
+input[type=text],input[type=password]{min-height:44px;font-size:16px;padding:6px 10px;border:2px solid var(--bd);border-radius:10px;background:var(--bg);color:var(--tx);width:100%;max-width:420px;box-sizing:border-box}
+.mono{font-family:ui-monospace,Menlo,Consolas,monospace;letter-spacing:.04em}label{font-size:14px}
+.chk{display:inline-flex;align-items:center;gap:6px;min-height:44px;margin-right:10px}.chk input{width:22px;height:22px}input[type=range]{width:100%;max-width:420px;min-height:32px}
+.meter{display:flex;gap:4px;margin:8px 0}.meter i{flex:1;height:12px;border-radius:6px;background:var(--bd)}
+.lv1 i.on{background:#b42318}.lv2 i.on{background:#d9480f}.lv3 i.on{background:#b7791f}.lv4 i.on{background:#2f9e44}.lv5 i.on{background:#1b7a3d}
+.res{font-size:18px;font-weight:700}ul.n{padding-left:0;list-style:none;margin:6px 0}ul.n li{padding:2px 0;font-size:14px}
+.warn{border:2px solid var(--ac);border-radius:10px;padding:10px;font-size:13px;margin:8px 0}
+.item{display:flex;flex-wrap:wrap;gap:8px;align-items:center;border-top:1px solid var(--bd);padding:8px 0}.item b{flex:1 1 140px;word-break:break-all}.item .pw{flex:1 1 140px;word-break:break-all}
+#pwInfo{max-width:640px;width:calc(100% - 28px);max-height:85%;overflow:auto;border:2px solid var(--bd);border-radius:14px;background:var(--card);color:var(--tx);padding:18px}#pwInfo::backdrop{background:rgba(0,0,0,.6)}#pwInfo h3{font-size:15px;margin:12px 0 4px}#pwInfo p,#pwInfo li{font-size:14px;margin:2px 0}
+[hidden]{display:none!important}
+@media print{#pw{display:none!important}}
+</style></head><body>
+<a class="skip" href="#main">本文へ移動</a>
+<header class="top"><h1>🌏 国別 情報漏洩一覧 2026</h1>
+<button class="btn" id="tbT" type="button" aria-expanded="true" aria-controls="tbBody">⚙️ ツールを折りたたむ ▲</button>
+<div class="tb" id="tbBody" role="toolbar" aria-label="ページ操作">
+<button class="btn" id="bShare" type="button" aria-label="このページを共有する">📤 共有</button>
+<button class="btn" id="bCopy" type="button" aria-label="一覧をテキストとしてコピーする">📋 コピー</button>
+<button class="btn" id="bPrint" type="button" aria-label="このページを印刷する">🖨️ 印刷</button>
+<button class="btn" id="bTheme" type="button">🌙 ダーク</button>
+<div class="grp" role="group" aria-label="文字サイズ"><span aria-hidden="true">文字</span><button class="btn" type="button" data-s="s" aria-pressed="false" aria-label="文字サイズ 小">小</button><button class="btn" type="button" data-s="m" aria-pressed="true" aria-label="文字サイズ 中">中</button><button class="btn" type="button" data-s="l" aria-pressed="false" aria-label="文字サイズ 大">大</button></div>
+<button class="btn d" id="bWipeAll" type="button" aria-label="このページが保存したすべてのデータを消去する">🗑️ 全データ消去</button>
+<a class="btn" href="#pw">🔑 パスワードツール</a>
+<button class="btn" id="bPriv" type="button" aria-haspopup="dialog">🔒 プライバシー</button>
+</div></header>
+<main id="main">
+<div class="sub">2026年10月10日時点の報道に基づく主要事案。日本は10月9日までに公表された直近分を中心に採用。「主張」は攻撃者側の数字で未確認、「件」は会員番号やレコード数で人数と一致しない場合があります。</div>
+<div class="grid">
+<div class="card"><h2>国別の掲載件数</h2><div id="c1"></div></div>
+<div class="card"><h2>国別の判明人数・件数合計(主張を除く)</h2><div id="c2"></div></div>
+<div class="card"><h2>🇯🇵 日本:影響件数ランキング</h2><div id="c3"></div></div>
+</div>
+<section class='card' aria-label='並べ替えと表示'>
+<div class='ctl'><span id='lbS'>並べ替え</span><div class='grp' role='group' aria-labelledby='lbS'>
+<button class='btn' type='button' data-o='kana' aria-pressed='false'>あいうえお順</button>
+<button class='btn' type='button' data-o='date' aria-pressed='true'>日付順(新しい順)</button>
+<button class='btn' type='button' data-o='size' aria-pressed='false'>漏洩規模順</button>
+<button class='btn' type='button' data-o='sev' aria-pressed='false'>重大インシデント順</button></div></div>
+<div class='ctl'><span id='lbM'>表示</span><div class='grp' role='group' aria-labelledby='lbM'>
+<button class='btn' type='button' data-m='country' aria-pressed='true'>国別</button>
+<button class='btn' type='button' data-m='all' aria-pressed='false'>全体を一覧</button></div></div>
+<div id='rkc' class='note' aria-live='polite'></div>
+<details><summary>重大度ランク(SS・A・B・C・D・E)の基準</summary>
+<p class='note'>目安の点数で自動判定しています(公的な区分ではありません)。<br>規模点:1万件以上=1、10万以上=2、100万以上=3、500万以上=4、1,000万以上=5<br>機微点:旅券・免許・本人確認書類・口座・医療・要配慮情報・SSN等=2、生年月日・パスワード・カード情報等=1<br>影響範囲点:ランサムウェア、多数機関への波及、政府・国防等=1<br>合計 7以上=SS、6=A、5=B、4=C、2〜3=D、0〜1=E。規模が未確認の事案は低めに出るため暫定です。IDCフロンティアは数百組織に波及しデータ復元が困難なため手動でSSとしています。攻撃者主張の件数も規模点に含めます。</p></details></section>
+<div id="list"></div>
+<div class="card"><b>日本の動向:</b>2026年1〜10月9日に公表された不正アクセスによる漏えいは企業・団体138件(公式発表ベースの集計)で、9月下旬〜10月初めの約1週間だけで判明分2,600万件超とされます。個人情報保護委員会は10月7日に大規模漏えい事案を踏まえた注意喚起を公表し、ガイドライン見直しの内容を先取りして示しました。10月7日にはソフトバンク子会社IDCフロンティアのIDCFクラウドがランサムウェア攻撃を受け、495の企業・自治体に影響が広がっており(JR東日本、第一興商、アドベンチャーなど)、被害の全体像は今後さらに拡大する可能性があります。手口は委託先・管理ツール・メールアカウントの乗っ取りやフィッシングが目立ち、対策は多要素認証(フィッシング耐性)、不要アカウント削除、委託先管理、大量取得の検知です。</div>
+<section id="pw" aria-label="パスワードツール"><h2 style="font-size:18px;margin:18px 0 8px">🔑 パスワードツール(判定・生成・保管庫)</h2><div class="r"><button class="btn" id="pwBInfo" type="button" aria-haspopup="dialog">ℹ️ 安全性について</button></div>
+<section class="card" aria-labelledby="h1"><h2 id="h1">① パスワード危険度判定</h2>
+<p class="note">入力内容は、この端末のブラウザ内の計算だけに使い、保存・送信しません(履歴・Cookie・ストレージを使いません)。実際に使っているパスワードそのものではなく、似た構成の例で試すとより安心です。</p>
+<label for="ck">判定するパスワード</label><br>
+<input id="ck" type="password" autocomplete="off" autocapitalize="off" spellcheck="false" class="mono">
+<div class="r"><button class="btn" id="ckShow" type="button" aria-pressed="false">👁 表示する</button><button class="btn" id="ckClr" type="button">消去</button></div>
+<div id="ckRes" aria-live="polite"></div></section>
+
+<section class="card" aria-labelledby="h2"><h2 id="h2">② 複雑パスワード生成</h2>
+<p class="note">ブラウザの暗号用乱数(crypto.getRandomValues)で生成し、保存しません。</p>
+<label for="gl">文字数:<b id="glv">20</b></label><br><input id="gl" type="range" min="8" max="64" value="20">
+<div><label class="chk"><input type="checkbox" id="gU" checked>大文字</label><label class="chk"><input type="checkbox" id="gL" checked>小文字</label><label class="chk"><input type="checkbox" id="gD" checked>数字</label><label class="chk"><input type="checkbox" id="gS" checked>記号</label><label class="chk"><input type="checkbox" id="gX" checked>紛らわしい文字を除く(Il1O0o)</label></div>
+<label for="go">生成結果</label><br><input id="go" type="text" readonly class="mono" autocomplete="off">
+<div class="r"><button class="btn p" id="gGen" type="button">生成する</button><button class="btn" id="gCopy" type="button">コピー(30秒後に消去を試みる)</button><button class="btn" id="gChk" type="button">判定にかける</button><button class="btn" id="gVault" type="button">保管庫の入力へ</button></div>
+<div id="gMsg" class="note" role="status"></div></section>
+
+<section class="card" aria-labelledby="h3"><h2 id="h3">③ パスワード保管庫(最大20件・この端末のみ)</h2>
+<div class="warn">⚠️ 保管するのは<b>暗号化した状態のみ</b>です(マスターパスワードで AES-256-GCM)。ただし「絶対安全」ではありません。銀行・主要メール等の重要なパスワードは、専用のパスワードマネージャーやパスキーを使ってください。マスターパスワードを忘れると復元できません。</div>
+<div id="vOff" hidden class="warn">この環境ではブラウザ保存が使えないため、保管庫は利用できません。</div>
+<div id="vSetup" hidden><p>はじめに、マスターパスワード(12文字以上・判定「安全」以上)を決めてください。</p>
+<label for="m1">マスターパスワード</label><br><input id="m1" type="password" autocomplete="off" class="mono"><br>
+<label for="m2">もう一度入力</label><br><input id="m2" type="password" autocomplete="off" class="mono">
+<div class="r"><button class="btn p" id="vCreate" type="button">保管庫を作成</button></div></div>
+<div id="vLock" hidden><label for="m3">マスターパスワード</label><br><input id="m3" type="password" autocomplete="off" class="mono">
+<div class="r"><button class="btn p" id="vOpen" type="button">ロック解除</button><button class="btn d" id="vWipe0" type="button">保管庫を全削除</button></div></div>
+<div id="vMain" hidden><p><b id="vCnt">0</b> / 20 件 <span class="note">(3分操作がない、または画面を1分以上離れると自動でロック)</span></p>
+<div id="vList"></div>
+<h3 style="font-size:15px">追加</h3>
+<label for="vo">機関名</label><br><input id="vo" type="text" maxlength="60" autocomplete="off"><br>
+<label for="vp">パスワード</label><br><input id="vp" type="password" autocomplete="off" class="mono">
+<div class="r"><button class="btn p" id="vAdd" type="button">追加して暗号化保存</button><button class="btn" id="vGen" type="button">生成して入れる</button><button class="btn" id="vLockNow" type="button">🔒 今すぐロック</button><button class="btn d" id="vWipe" type="button">全削除</button></div></div>
+<div id="vMsg" role="status" aria-live="polite" style="font-weight:600"></div></section>
+<dialog id="pwInfo" aria-labelledby="pwIt"><h2 id="pwIt">安全性について(正直な限界)</h2>
+<h3>判定・生成</h3><p>どこにも保存しません。ただしコピーしたパスワードは、OSやキーボードのクリップボード履歴に残ることがあります。</p>
+<h3>保管庫</h3><ul><li>保存先はこのブラウザのローカルストレージで、中身は暗号文のみです。マスターパスワードと復号済みデータはメモリ上だけで扱い、ロックで破棄します(完全な消去までは保証できません)。</li><li>暗号化は PBKDF2-SHA256(60万回)と AES-256-GCM です。マスターパスワードが弱いと、暗号文を入手した人に総当たりされる恐れがあります。</li><li>ローカルストレージは平文では「安全な保管場所」ではありません。暗号化していても、次は防げません:キーボード記録などのマルウェア、悪意あるブラウザ拡張、画面の覗き見、ページ自体の改ざん。</li><li>ブラウザのデータ消去や別ブラウザ・別端末では消える/見えません。バックアップはありません。</li></ul>
+<h3>おすすめ</h3><p>重要なアカウントには、OSやブラウザ標準のキーチェーン、信頼できるパスワードマネージャー、パスキー、多要素認証を使ってください。本ツールは補助的な用途向けです。</p>
+<p><button class="btn" id="pwIClose" type="button">閉じる</button></p></dialog></section>
+</main>
+<div id="toast" role="status" aria-live="polite"></div>
+<dialog id="priv" aria-labelledby="pt"><h2 id="pt">プライバシーポリシー</h2>
+<p>制定日:2026年10月10日</p>
+<h3>1. 取得する情報</h3><p>本ページは、閲覧者の個人情報を収集・送信しません。Cookie、アクセス解析、広告、外部サービスへの通信は使用していません。</p>
+<h3>2. 端末内への保存</h3><p>表示設定(ライト/ダークモード、文字サイズ)を、お使いのブラウザ内(ローカルストレージ)に保存することがあります。外部へは送信されません。</p><p>パスワードツールの「判定」「生成」は、入力・結果を保存しません。「保管庫」を作成した場合のみ、マスターパスワードで暗号化した暗号文(機関名とパスワード、最大20件)を、このブラウザのローカルストレージ(キー名 pwvault.v1)に保存します。マスターパスワードは保存されません。削除はヘッダーの「全データ消去」、保管庫の「全削除」、またはブラウザの設定から行えます。ただしOSのクリップボード履歴やブラウザの閲覧履歴など、ページの外にあるデータは消去できません。ただし端末内の保存は絶対に安全とは言えないため、重要なパスワードは専用のパスワードマネージャー等をご利用ください。</p>
+<h3>3. 共有・コピー・印刷</h3><p>これらの操作はお使いの端末内で実行されます。共有時の情報の取り扱いは、共有先のサービスのポリシーに従います。</p>
+<h3>4. 掲載情報について</h3><ul><li>公開されている報道・公式発表に基づく情報です。</li><li>件数・時期・内容は報道時点のもので、訂正・更新される場合があります。</li><li>攻撃者側の主張は「主張」と表示し、確認済みの情報と区別しています。</li><li>正確性・完全性は保証しません。重要な判断の前に、各組織の公式発表をご確認ください。</li></ul>
+<h3>5. 配信基盤</h3><p>本ページはClaudeのアーティファクトとして配信されており、配信基盤側で通常のアクセス記録が取得される場合があります。その取り扱いはAnthropicのプライバシーポリシーに従います。</p>
+<h3>6. 改定</h3><p>本ポリシーは予告なく改定することがあります。</p>
+<p style="margin-top:14px"><button class="btn" id="pClose" type="button">閉じる</button></p></dialog>
+<script>
+const J="日本",U="米国";
+const D={
+[J]:[
+["2026-10-09","JR東日本(ビューカード/えきねっと/大人の休日倶楽部)",6090000,"件","メールアドレス(のべ。ビューカード約403万・えきねっと約167万・大人の休日倶楽部約39万)。大人の休日倶楽部は会員番号・カード有効期限・生年月日も。氏名・住所・電話・カード番号は可能性なしと説明","ソフトバンク子会社IDCフロンティアの法人向けクラウドへの不正アクセス(メール配信用外部サービス経由)","対象者へ個別メール通知予定。メール配信が一部停止(切符予約は通常どおり)。不審メール警戒"],
+["2026-10-09","第一興商(ビッグエコー)",8720000,"件","利用者の個人情報(流出のおそれ)","委託先での不正アクセス・情報漏えいのおそれ(原因の詳細は公式発表で要確認)","公表・調査。不審メール警戒"],
+["2026-10-09","アドベンチャー(skyticket)",14640000,"件","旅行予約サイトの流出件数(約1,464万件)","個人情報流出通知メールを送付。原因の詳細は公式発表で要確認","利用者へ通知・パスワード変更と不審メール警戒"],
+["2026-10-09","JR九州",1300000,"件","メールアドレス(約130万件)","報道見出しベース。原因は公式発表で要確認","公表・調査"],
+["2026-10-07","IDCフロンティア(ソフトバンク子会社)",0,"","IDCFクラウド契約の495企業・自治体が影響。JR東日本、日水物流(17拠点で入出荷停止)、茨城県・小平市、UDトーク、サイバー大学などで障害や漏えいのおそれ。個人情報の流出範囲は調査中","ランサムウェア攻撃。東日本リージョン1の4ゾーンで仮想サーバーが停止、データ復元は顧客自身のバックアップからのみ","ネットワーク遮断・管理コンソール停止・緊急対策本部設置・監督省庁と警視庁へ報告。顧客は別環境で再構築、バックアップ取得を"],
+["2026-10-08","八十二長野銀行",35,"人","メールアドレス35名分。その他の情報は確認中","職員が受信した不審メールを起点に、メールアカウントへ不正アクセス(10/7発生)","対象者へ個別連絡・アカウントのアクセス遮断・外部専門事業者が調査"],
+["2026-10-08","岩手銀行(大和証券委託先経由)",0,"","提携の大和証券サービス利用顧客の氏名・口座番号など(大和証券全体では約22万件)","大和証券の外部委託先への不正アクセス(10/2〜3)","大和証券からの報告を受け確認、公表"],
+["2026-08-27","01銀行(ゼロワンバンク)",0,"","顧客識別情報・メールアドレス(最大100社分、対象顧客は未特定。口座情報・パスワードは対象外と公表)","システムへの不正アクセス(8/17検知。経路は非公表)","経路遮断・外部専門家と調査・警察に相談・関係当局へ報告"],
+["2026-08-07","科学技術振興機構(JST)",0,"","一部役職員のメールボックス内のメールが外部に漏えいした可能性(7/28に外部機関から情報提供)","メールアカウントへの不正アクセス","不正アクセス経路を遮断・アクセス権限を無効化"],
+["2026-04-03","阿波銀行",0,"","お客さま情報等の一部","行内OAシステムのテスト環境への不正アクセス","公表・調査(テスト環境での本番データ保管が論点)"],
+["2026","福岡銀行(メットライフ生命出向者)",1052,"人","個人1,052人・法人45社の契約情報の一部","出向者による顧客情報の持ち出し(内部不正)","メットライフ生命からの出向受け入れを廃止"],
+["2026-10-09","ブックオフGHD(子会社会員管理)",6430000,"件","氏名・生年月日・性別・メール・電話・住所・パスワードのハッシュ値・ポイントカード番号","子会社の会員管理システムへの不正アクセス(経路未公表)。10/6確認","調査・公表(件数は会員番号ベースで人数ではない)。パスワード変更・フィッシング警戒"],
+["2026-10-08","ローソン(ローソンID/アプリ予約)",2155345,"件","個人情報(ID情報を表示する仕組みへの不正アクセス)","Webサービス・アプリ経由の不正アクセス","公表・被害者への注意喚起。不審メール警戒"],
+["2026-10-08","ユーザベース(NewsPicks)",1735154,"人","会員ID・氏名・メール・電話。氏名・勤務先・カード番号下3〜4桁の可能性","業務用管理ツールへの不正アクセス。10/3検知","サービス一時停止・外部アクセス遮断"],
+["2026-10-08","VALX「FUN」(Commune基盤)",0,"","コミュニティ会員情報(件数未確認)","コミュニティ基盤Communeへの不正アクセスの影響","お知らせ公表・調査中"],
+["2026-10-06","MrMax",1730000,"人","氏名・メール・電話(最大約173万人)","オンラインストア等のサーバーへの不正アクセス","公表・調査。偽メール警戒"],
+["2026-10-05","物語コーポレーション(焼肉きんぐアプリ)",10788963,"件","会員情報(メール・電話を含む)","公式アプリ会員管理システムへの不正アクセス。10/2確認","公表・調査・フィッシング警戒"],
+["2026-10-05","大和証券",110000,"人","顧客情報(約22万件)","外部委託先への不正アクセス","委託先管理の見直し・顧客へ注意喚起"],
+["2026-10-04","日本経済新聞社",0,"","社員Google Workspaceの情報","社員アカウントへの不正ログイン(気づかず継続)","不正ログイン対策・公表"],
+["2026-10-02","第一生命グループ",120000,"人","従業員・退職者の氏名・住所・電話・所属・職位","人事システムへの不正アクセス","公表・影響調査"],
+["2026-10-02","ムーンスター",0,"","オンラインストア利用者の氏名・住所・電話・メール・注文履歴(カード・パスワードは対象外)","サーバーへの不正アクセス(3/26第一報、10/2続報)","同社を装うフィッシングに警戒"],
+["2026-10-01","OZmall(スターツ出版)",442779,"人","メール、一部氏名・都道府県(最大)","不正アクセス(第2報)","閲覧可能性の通知・注意喚起"],
+["2026-10-01","らしんばん",0,"","利用者の個人情報の一部(可能性)","サービスへの第三者不正アクセス","調査・公表"],
+["2026-09-29","セイコーマート",572022,"人","氏名・生年月日・住所・電話・メール","第三者による閲覧を確認","公表・注意喚起"],
+["2026-09-28","タイムズカー",6600000,"件","氏名・住所・生年月日・電話・メール等(法人会員含む)。うち約160万件は免許証など本人確認書類の画像。カード情報は対象外","9/25検知、9/26遮断","攻撃者の遮断・影響範囲確定・公表"],
+["2026-09-16","Gyazo",23620000,"件","ユーザー情報約2,362万件+画像メタデータ約4.9億件(続報で約1.74億件追加)。メール・パスワードのハッシュ値・利用者ID","画像アップロードサーバーの脆弱性を悪用(9/11)","認証データ無効化・画像アクセス制限、9/27復旧"],
+["2026-09","日本テレネット",1066000,"件","委託元の顧客情報","コールセンター受託会社での漏えい","委託先管理の見直し"],
+["2026","EPARKリラク&エステ",22180000,"件","健康状態など要配慮個人情報を含むレコード","予約サイトからデータが外部転送","要配慮情報のため厳格な通知・対応"],
+["2026-06","KDDI",0,"","メールシステムへの不正アクセス(6/17検知)","メールシステムへの侵入","検知後6/23に公表"],
+["2026-09-30","VOISING",170000,"件","個人情報(第四報で調査結果を公表)","利用するBIツールへの不正アクセス(ツールの脆弱性)","調査結果と再発防止策を公表"],
+["2026-09-30","修道学園ほか教育機関3組織",0,"","教職員・学生・取引先の口座情報を含む","管理サーバーへの不正アクセスなど","公表・調査"],
+["2026-09-29","TOPPAN(損保ジャパン契約者)",177426,"人","保険料控除証明書のデータ","同業他社への誤送付(委託先の取り扱いミス)","送付先で削除済み・契約者へ通知"],
+["2026-09-29","日本郵便(郵便局アプリ・ゆうID)",69,"件","19名分。住所録・送り状情報を含む","外部からの不正アクセス","公表・対象者へ通知"],
+["2026-09-29","イープラス",1463,"件","スマチケの返金申請情報","払戻管理システムへの不正アクセス","漏えい確認・公表"],
+["2026-09-29","QUOカード",0,"","LINEキャンペーンシステムの情報(件数調査中)","キャンペーンシステムへの不正アクセス","公表・調査"],
+["2026-09-29","ヤマトグループ(クロネコ代金後払い)",0,"","件数調査中","サービスへの不正アクセス","公表・調査"],
+["2026-09-28","集英社(HAPPY PLUS COMMUNITY)",2835,"人","ブロガーなどの情報","コミュニティシステムへの不正アクセス","漏えい確認・公表"],
+["2026-09-28","TEMAIRAZU(宿泊予約システム)",0,"","宿泊予約者情報の閲覧・取得の可能性","不正アクセス。宿泊者に不審なメッセージ","不審メッセージへの注意喚起"],
+["2026-09-28","鳥取県琴浦町",828,"人","住民情報","委託事業者が別自治体の領域へ誤格納","誤格納先の閲覧者は職員1名・調査"],
+["2026-09-27","東京メトロ「メトポ」",59000,"件","会員のメールアドレス","不正アクセス","閲覧・取得の可能性を公表、不審メール警戒"],
+["2026-09-26","ニッポンレンタカー",0,"","アプリ会員情報(10/1に別の不正アクセスも判明)","アプリへの不正アクセス","公表・調査"],
+["2026-09-25","東洋紡グループ",0,"","メールアカウント内の情報","メールアカウントへの不正アクセス","公表・調査"],
+["2026-09-25","スマレジEC",0,"","一部顧客環境の情報","一部顧客環境への不正アクセス","公表・調査"],
+["2026-09-17","ちばぎん商店(千葉銀行)",10000,"件","グループ合計約1万件の顧客情報(ちばぎん商店分は個人約192先・法人約722先)","コーポレートサイトへの不正アクセス","対象先へ通知"],
+["2026-09-15","ムラウチドットコム",7716811,"件","氏名・住所・電話・メール・生年月日・性別","システムの脆弱性(7月に発生)","持ち出しを確認・調査結果を公表"],
+["2026-09-11","デジタル庁(GSS)",246000,"件","職員・業務関係者の氏名・メール・電話・住所","不正アクセス(6/25検知、7/9侵入確認)","公表・調査"],
+["2026-09-11","ロート製薬",0,"","顧客情報を扱うシステム","システムへの不正アクセス","公表・調査"],
+["2026-09-11","日本エネルギー経済研究所",0,"","情報漏えいを公表","不正アクセス","公表・調査"],
+["2026-09-04","PFU(キングジムも公表)",169355,"件","注文データ(最大)","過去に利用したショップサーブ経由","漏えいを公表"],
+["2026-09-03","RIZAP",19996,"人","疾患情報を含む個人情報","従業員が外部の生成AIに個人情報を入力(シャドーAI)","AI利用ルールの整備"],
+["2026-09","さくらインターネット",1360563,"件","アカウント情報(最大・可能性)","販売管理システムへの不正アクセス","公表・調査"]
+],
+[U]:[
+["2026-09","CenterPoint Energy",0,"","顧客データ(攻撃者主張。同社は未確認)","8月17日〜9月1日の侵害を集団訴訟が主張","8-K提出(9/14)"],
+["2026-09","FBI(内部システム)",0,"","捜査関連の機微情報・個人情報(窃取は未確認)","ShinyHunters が窃取を主張(9/22)","連邦機関は特権アクセス・ベンダー接続を見直し"],
+["2026-09","Aesto Health",9500000,"人","患者情報","報道で950万人超","被害者通知"],
+["2026-08","AdaptHealth",4115802,"人","医療関連の個人情報(HHS報告)","ネットワークサーバー侵害","被害者通知・規制当局報告"],
+["2026-07","国防総省 DMDC",3000000,"人","軍人・退役軍人・家族の機微情報(暗号化なし)","2025年10月〜7/16発覚まで約9カ月アクセスを許した","対象者へ通知書を送付"],
+["2026","TriZetto Provider Solutions",3433965,"人","医療関連の個人情報","医療IT事業者への侵害","被害者通知・HHS報告"],
+["2026","Carnival",5995277,"人","氏名・住所・電話・生年月日・会員情報、一部に旅券/免許番号","ソーシャルエンジニアリング","信用情報の監視"],
+["2026","ADT",5500000,"人","氏名・電話・住所、一部は生年月日とSSN下4桁","従業員アカウント侵害","不審な訪問・電話は公式窓口で確認"],
+["2026","Panera Bread",5100000,"人","氏名・メール・電話・住所(約1,400万レコード)","連絡先データの公開","ポイント/返金を装うフィッシング警戒"],
+["2026-06","Kodak",2200000,"件","顧客・社内レコード","ShinyHunters が窃取を主張","調査・通知"],
+["2026-06","DentaQuest",0,"","234GBのデータが公開されたと主張","恐喝型攻撃","7月から通知開始"],
+["2026-03","Aura",900000,"件","マーケティング記録(氏名・メール)","ボイスフィッシングで従業員アカウント侵害","公式アプリ/サイトで確認"],
+["2026-05","Instructure(Canvas)",275000000,"主張","氏名・メール・学籍番号・メッセージ","ShinyHunters による恐喝(約9,000機関と主張)","学校を装うフィッシング警戒"]
+],
+"フランス":[["2026-03","Cegedim Santé",15800000,"件","患者記録(欧州最大級の医療情報漏洩)","医療ソフトから窃取(2025年末侵害)","当局通知・患者告知"]],
+"EU":[["2026-03","欧州委員会",0,"","詳細は調査中(2026年で2件目)","調査中","調査・通知"]]
+};
+const fm=n=>n>=1e8?(n/1e8).toFixed(2)+"億":n>=1e4?Math.round(n/1e4).toLocaleString()+"万":n;
+const ents=Object.entries(D),sum=r=>r.filter(x=>x[3]!="主張").reduce((a,x)=>a+x[2],0);
+function bars(id,rows,cls){const mx=Math.max(...rows.map(r=>r[1]));document.getElementById(id).innerHTML=rows.map(r=>`<div class="row"><div class="l" title="${r[0]}">${r[0]}</div><div class="bar"><i class="${cls||''}" style="width:${Math.max(r[1]/mx*100,3)}%"></i></div><div class="v">${r[2]}</div></div>`).join("")}
+bars("c1",ents.map(([k,v])=>[k,v.length,v.length]).sort((a,b)=>b[1]-a[1]));
+bars("c2",ents.map(([k,v])=>[k,sum(v),fm(sum(v))]).sort((a,b)=>b[1]-a[1]),"c");
+bars("c3",D[J].filter(x=>x[2]).sort((a,b)=>b[2]-a[2]).slice(0,10).map(x=>[x[1],x[2],fm(x[2])+x[3]]));
+document.getElementById("list").innerHTML=ents.map(([k,v],i)=>`<details ${i<2?"open":""}><summary>${k}<span>${v.length}件 / 判明合計 ${fm(sum(v))}</span></summary><div class="tw"><table><tr><th>発覚/公表</th><th>機関名</th><th>規模</th><th>漏洩情報の詳細</th><th>原因・手口</th><th>対応策</th></tr>${v.slice().sort((a,b)=>b[0].localeCompare(a[0])).map(x=>`<tr><td>${x[0]}</td><td><b>${x[1]}</b></td><td>${x[2]?fm(x[2])+' <span class="tag '+(x[3]=="主張"?"m":"")+'">'+x[3]+'</span>':'<span class="tag">未確認</span>'}</td><td>${x[4]}</td><td>${x[5]}</td><td>${x[6]}</td></tr>`).join("")}</table></div></details>`).join("");
+(function(){
+const R=document.documentElement,$=id=>document.getElementById(id);
+const st=(k,v)=>{try{if(v===undefined)return localStorage.getItem(k);localStorage.setItem(k,v)}catch(e){return null}};
+function toast(m){const t=$("toast");t.textContent=m;t.classList.add("show");clearTimeout(toast.h);toast.h=setTimeout(()=>t.classList.remove("show"),2800)}
+function theme(t,save){R.setAttribute("data-theme",t);$("bTheme").textContent=t=="dark"?"☀️ ライト":"🌙 ダーク";$("bTheme").setAttribute("aria-label",t=="dark"?"ライトモードに切り替える":"ダークモードに切り替える");if(save)st("theme",t)}
+function size(s,save){R.setAttribute("data-size",s);document.querySelectorAll("[data-s]").forEach(b=>b.setAttribute("aria-pressed",b.dataset.s==s));if(save)st("size",s)}
+const sv=st("theme");theme(sv||(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"));
+const ss=st("size");size(ss||"m");
+$("bTheme").onclick=()=>theme(R.getAttribute("data-theme")=="dark"?"light":"dark",1);
+document.querySelectorAll("[data-s]").forEach(b=>b.onclick=()=>size(b.dataset.s,1));
+function toText(){let s="国別 情報漏洩一覧 2026(2026-10-10時点)\n"+location.href+"\n";for(const [k,v] of Object.entries(D)){s+="\n■"+k+"("+v.length+"件)\n";v.slice().sort((a,b)=>b[0].localeCompare(a[0])).forEach(x=>{s+=x[0]+" | "+x[1]+" | "+(x[2]?fm(x[2])+x[3]:"規模未確認")+" | "+x[4]+" | 手口:"+x[5]+" | 対応:"+x[6]+"\n"})}return s}
+async function copy(t){try{await navigator.clipboard.writeText(t);return 1}catch(e){try{const a=document.createElement("textarea");a.value=t;a.style.position="fixed";a.style.opacity=0;document.body.appendChild(a);a.select();const ok=document.execCommand("copy");a.remove();return ok}catch(e2){return 0}}}
+$("bCopy").onclick=async()=>toast(await copy(toText())?"一覧をコピーしました":"コピーできませんでした。手動で選択してください");
+$("bShare").onclick=async()=>{const d={title:document.title,text:"国別 情報漏洩一覧 2026",url:location.href};if(navigator.share){try{await navigator.share(d);return}catch(e){if(e.name=="AbortError")return}}toast(await copy(location.href)?"共有に未対応のため、リンクをコピーしました":"リンクをコピーできませんでした")};
+let op=[];addEventListener("beforeprint",()=>{op=[...document.querySelectorAll("details")].map(d=>d.open);document.querySelectorAll("details").forEach(d=>d.open=true)});addEventListener("afterprint",()=>document.querySelectorAll("details").forEach((d,i)=>d.open=op[i]));
+$("bPrint").onclick=()=>{try{window.print()}catch(e){toast("この環境では印刷できません。ブラウザの印刷機能をご利用ください")}};
+const dg=$("priv");$("bPriv").onclick=()=>dg.showModal?dg.showModal():dg.setAttribute("open","");$("pClose").onclick=()=>dg.close?dg.close():dg.removeAttribute("open");
+})();
+(function(){
+const G=id=>document.getElementById(id);
+const Y=[['ブックオフ','ぶっくおふ'],['ローソン','ろーそん'],['ユーザベース','ゆーざーべーす'],['VALX','ばるくす'],['MrMax','みすたーまっくす'],['物語','ものがたりこーぽれーしょん'],['大和証券','だいわしょうけん'],['日本経済','にほんけいざいしんぶんしゃ'],['第一生命','だいいちせいめい'],['ムーンスター','むーんすたー'],['OZmall','おずもーる'],['らしんばん','らしんばん'],['セイコーマート','せいこーまーと'],['タイムズカー','たいむずかー'],['Gyazo','ぎゃぞ'],['日本テレネット','にほんてれねっと'],['EPARK','いーぱーく'],['KDDI','けーでぃーでぃーあい'],['VOISING','ぼいしんぐ'],['修道学園','しゅうどうがくえん'],['TOPPAN','とっぱん'],['日本郵便','にほんゆうびん'],['イープラス','いーぷらす'],['QUO','くおかーど'],['ヤマト','やまとぐるーぷ'],['集英社','しゅうえいしゃ'],['TEMAIRAZU','てまいらず'],['鳥取県','ことうらちょう'],['東京メトロ','とうきょうめとろ'],['ニッポンレンタカー','にっぽんれんたかー'],['東洋紡','とうようぼう'],['スマレジ','すまれじ'],['ちばぎん','ちばぎんしょうてん'],['ムラウチ','むらうちどっとこむ'],['デジタル庁','でじたるちょう'],['ロート','ろーとせいやく'],['日本エネルギー','にほんえねるぎーけいざいけんきゅうじょ'],['PFU','ぴーえふゆー'],['RIZAP','らいざっぷ'],['さくら','さくらいんたーねっと'],['JR東日本','じぇいあーるひがしにほん'],['第一興商','だいいちこうしょう'],['アドベンチャー','あどべんちゃー'],['JR九州','じぇいあーるきゅうしゅう'],['IDC','あいでぃーしーふろんてぃあ'],['八十二','はちじゅうにながのぎんこう'],['岩手','いわてぎんこう'],['01銀行','ぜろわんぎんこう'],['科学技術','かがくぎじゅつしんこうきこう'],['阿波','あわぎんこう'],['福岡','ふくおかぎんこう'],['CenterPoint','せんたーぽいんと'],['FBI','えふびーあい'],['Aesto','えすと'],['AdaptHealth','あだぷとへるす'],['国防総省','こくぼうそうしょう'],['TriZetto','とりぜっと'],['Carnival','かーにばる'],['ADT','えーでぃーてぃー'],['Panera','ぱねら'],['Kodak','こだっく'],['DentaQuest','でんたくえすと'],['Aura','おーら'],['Instructure','いんすとらくちゃー'],['Cegedim','せじでぃむ'],['欧州委員会','おうしゅういいんかい']];
+const yo=o=>{const p=Y.find(p=>o.startsWith(p[0]));return p?p[1]:o};
+const ORD=['SS','A','B','C','D','E'];
+function rk(x){if(x[1].startsWith('IDCフロンティア'))return 'SS';const n=x[2],b=n>=1e7?5:n>=5e6?4:n>=1e6?3:n>=1e5?2:n>=1e4?1:0;
+const s=/パスポート|旅券|免許|本人確認|口座|疾患|要配慮|機微|SSN|マイナンバー|患者|医療/.test(x[4])?2:/生年月日|パスワード|カード/.test(x[4])?1:0;
+const i=/ランサム|495|機関|国防|IDC|FBI|デジタル庁/.test(x[1]+x[4]+x[5])?1:0;
+const t=b+s+i;return t>=7?'SS':t==6?'A':t==5?'B':t==4?'C':t>=2?'D':'E'}
+const all=[];Object.entries(D).forEach(([k,v])=>v.forEach(x=>all.push({k,x,r:rk(x),y:yo(x[1])})));
+let so='date',mo='country';
+const NM={kana:'あいうえお順',date:'日付順(新しい順)',size:'漏洩規模順(大きい順)',sev:'重大インシデント順(SS→E)'};
+const cmp={date:(a,b)=>b.x[0].localeCompare(a.x[0]),kana:(a,b)=>a.y.localeCompare(b.y,'ja'),size:(a,b)=>b.x[2]-a.x[2],sev:(a,b)=>ORD.indexOf(a.r)-ORD.indexOf(b.r)||b.x[2]-a.x[2]};
+const rowH=(o,c)=>{const x=o.x;return `<tr><td><span class='rk rk-${o.r}' aria-label='重大度${o.r}'>${o.r}</span></td><td>${x[0]}</td><td><b>${x[1]}</b>${so=='kana'?'<div class="note">'+o.y+'</div>':''}</td>${c?'<td>'+o.k+'</td>':''}<td>${x[2]?fm(x[2])+' <span class="tag '+(x[3]=='主張'?'m':'')+'">'+x[3]+'</span>':'<span class="tag">未確認</span>'}</td><td>${x[4]}</td><td>${x[5]}</td><td>${x[6]}</td></tr>`};
+const hd=c=>`<tr><th>重大度</th><th>発覚/公表</th><th>機関名</th>${c?'<th>国</th>':''}<th>規模</th><th>漏洩情報の詳細</th><th>原因・手口</th><th>対応策</th></tr>`;
+function render(){const L=G('list');
+G('rkc').textContent='並べ替え:'+NM[so]+' / '+(mo=='all'?'全体表示':'国別表示')+'(全'+all.length+'件)　重大度の件数 '+ORD.map(r=>r+':'+all.filter(o=>o.r==r).length).join(' ');
+document.querySelectorAll('[data-o]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.o==so));
+document.querySelectorAll('[data-m]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.m==mo));
+if(mo=='all'){L.innerHTML=`<div class='card'><div class='tw'><table>${hd(1)}${[...all].sort(cmp[so]).map(o=>rowH(o,1)).join('')}</table></div></div>`;return}
+L.innerHTML=Object.keys(D).map((k,i)=>{const v=all.filter(o=>o.k==k).sort(cmp[so]);return `<details ${i<2?'open':''}><summary>${k}<span>${v.length}件 / 判明合計 ${fm(sum(D[k]))}</span></summary><div class='tw'><table>${hd(0)}${v.map(o=>rowH(o,0)).join('')}</table></div></details>`}).join('')}
+document.querySelectorAll('[data-o]').forEach(b=>b.onclick=()=>{so=b.dataset.o;render()});
+document.querySelectorAll('[data-m]').forEach(b=>b.onclick=()=>{mo=b.dataset.m;render()});
+render();
+})();
+(function(){
+const $=id=>document.getElementById(id);
+const dg=$('pwInfo');$('pwBInfo').onclick=()=>dg.showModal?dg.showModal():dg.setAttribute('open','');$('pwIClose').onclick=()=>dg.close?dg.close():dg.removeAttribute('open');
+/* ① 判定 */
+const COMMON=['password','passw0rd','123456','12345678','qwerty','abc123','111111','000000','letmein','admin','welcome','iloveyou','monkey','dragon','login','master','sunshine','princess','football','baseball','shadow','trustno1','changeme','secret','1q2w3e','asdf','zxcv','test','guest','root','user','pass','love','hello','tokyo','japan','sakura'];
+const KB=['qwertyuiop','asdfghjkl','zxcvbnm','1234567890','0987654321'];
+const norm=s=>s.toLowerCase().replace(/[@4]/g,'a').replace(/3/g,'e').replace(/0/g,'o').replace(/[1!|]/g,'l').replace(/[$5]/g,'s').replace(/7/g,'t');
+function seq(s){s=s.toLowerCase();for(let i=0;i<s.length-2;i++){const a=s.charCodeAt(i),b=s.charCodeAt(i+1),c=s.charCodeAt(i+2);if((b-a==1&&c-b==1)||(a-b==1&&b-c==1))return 1}
+for(const r of KB)for(let i=0;i<=r.length-4;i++){const p=r.slice(i,i+4);if(s.includes(p)||s.includes([...p].reverse().join('')))return 1}return 0}
+function analyze(p){const n=[],L=/[a-z]/.test(p),U=/[A-Z]/.test(p),D=/\d/.test(p),S=/[!-\/:-@\[-`{-~]/.test(p),O=/[^\x00-\x7f]/.test(p);
+const pool=(L?26:0)+(U?26:0)+(D?10:0)+(S?33:0)+(O?100:0)||1;let bits=p.length*Math.log2(pool);
+const cls=[L,U,D,S].filter(Boolean).length;
+if(p.length>=16)n.push(['ok','16文字以上で長さは十分です']);else if(p.length>=12)n.push(['ok','12文字以上あります(16文字以上だとより安心)']);else n.push(['bad','短すぎます。12文字以上、できれば16文字以上に']);
+if(cls>=3)n.push(['ok','文字の種類が混ざっています']);else n.push(['bad','大文字・小文字・数字・記号を混ぜましょう']);
+if(new Set(p).size<p.length*.6){bits*=.7;n.push(['bad','同じ文字が多く使われています'])}
+if(/(.)\1{2,}/.test(p)){bits-=8;n.push(['bad','同じ文字の連続があります'])}
+if(seq(p)){bits-=10;n.push(['bad','連続した文字(abc、123、qwerty等)があります'])}
+if(/(19|20)\d{2}/.test(p)){bits-=6;n.push(['bad','年号のような数字が含まれています'])}
+const nm=norm(p),hit=COMMON.find(w=>nm.includes(w));
+if(hit){bits=nm==hit?5:bits-18;n.push(['bad','よくあるパスワード・単語を含みます(置き換え文字を使っても推測されます)'])}
+if(p.length<8)bits=Math.min(bits,25);bits=Math.max(0,bits);
+const lv=bits<28?1:bits<40?2:bits<60?3:bits<80?4:5;
+return{bits,lv,n,len:p.length}}
+function fmt(sec){if(sec<1)return'1秒未満';const u=[[60,'秒'],[60,'分'],[24,'時間'],[365,'日'],[1e4,'年'],[1e4,'万年'],[1e99,'億年']];let v=sec,i=0;for(;i<u.length-1&&v>=u[i][0];i++)v/=u[i][0];return Math.round(v).toLocaleString()+u[i][1]}
+const LB=['','非常に危険','危険','注意','安全','非常に安全'],IC=['','⛔','⚠️','🟡','✅','🛡️'];
+function showRes(box,a){if(!a){box.innerHTML='';return}
+const t=fmt(Math.pow(2,a.bits-1)/1e10);
+box.innerHTML=`<div class="res">${IC[a.lv]} 危険度:${LB[a.lv]}(5段階中 ${a.lv})</div><div class="meter lv${a.lv}" aria-hidden="true">${[1,2,3,4,5].map(i=>`<i class="${i<=a.lv?'on':''}"></i>`).join('')}</div><p>推定強度:約${Math.round(a.bits)}ビット / 総当たり目安:${t}(1秒に100億回試せる高速な攻撃を想定)</p><ul class="n">${a.n.map(x=>`<li>${x[0]=='ok'?'✔':'✖'} ${x[1]}</li>`).join('')}</ul>`}
+let ct,idleCk;
+function runCk(){showRes($('ckRes'),$('ck').value?analyze($('ck').value):null)}
+$('ck').oninput=()=>{clearTimeout(ct);ct=setTimeout(runCk,500);clearTimeout(idleCk);idleCk=setTimeout(clrCk,12e4)};
+function clrCk(){$('ck').value='';$('ckRes').innerHTML=''}
+$('ckClr').onclick=clrCk;
+$('ckShow').onclick=()=>{const s=$('ck').type=='password';$('ck').type=s?'text':'password';$('ckShow').setAttribute('aria-pressed',s);$('ckShow').textContent=s?'🙈 隠す':'👁 表示する'};
+/* ② 生成 */
+function rnd(n){const a=new Uint32Array(1),lim=Math.floor(4294967296/n)*n;let x;do{crypto.getRandomValues(a);x=a[0]}while(x>=lim);return x%n}
+function gen(){const x=$('gX').checked,sets=[];
+if($('gU').checked)sets.push(x?'ABCDEFGHJKLMNPQRSTUVWXYZ':'ABCDEFGHIJKLMNOPQRSTUVWXYZ');
+if($('gL').checked)sets.push(x?'abcdefghijkmnpqrstuvwxyz':'abcdefghijklmnopqrstuvwxyz');
+if($('gD').checked)sets.push(x?'23456789':'0123456789');
+if($('gS').checked)sets.push('!@#$%&*-_=+?');
+if(!sets.length){$('go').value='';$('gMsg').textContent='文字の種類を1つ以上選んでください';return}
+const len=+$('gl').value,all=sets.join(''),o=sets.map(s=>s[rnd(s.length)]);
+while(o.length<len)o.push(all[rnd(all.length)]);
+for(let i=o.length-1;i>0;i--){const j=rnd(i+1);[o[i],o[j]]=[o[j],o[i]]}
+$('go').value=o.join('');$('gMsg').textContent=''}
+$('gl').oninput=()=>{$('glv').textContent=$('gl').value;gen()};
+['gU','gL','gD','gS','gX'].forEach(i=>$(i).onchange=gen);$('gGen').onclick=gen;gen();
+async function copy(t,m){try{await navigator.clipboard.writeText(t);$(m).textContent='コピーしました。30秒後にクリップボードの消去を試みます。';setTimeout(()=>navigator.clipboard.writeText('').catch(()=>{}),3e4)}catch(e){$(m).textContent='コピーできませんでした。手動で選択してください'}}
+$('gCopy').onclick=()=>copy($('go').value,'gMsg');
+$('gChk').onclick=()=>{$('ck').value=$('go').value;runCk();$('ck').scrollIntoView()};
+$('gVault').onclick=()=>{if($('vMain').hidden){$('gMsg').textContent='保管庫のロックを解除してください'}else{$('vp').value=$('go').value;$('vp').focus()}};
+/* ③ 保管庫 */
+const SK='pwvault.v1',IT=600000,MAXN=20,enc=new TextEncoder(),dec=new TextDecoder();
+let key=null,salt=null,items=[],idle,hid;
+const b64=u=>btoa(String.fromCharCode(...u)),ub=s=>Uint8Array.from(atob(s),c=>c.charCodeAt(0));
+const esc=s=>s.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+let okS=true;try{localStorage.setItem('__t','1');localStorage.removeItem('__t')}catch(e){okS=false}
+const rd=()=>{try{return localStorage.getItem(SK)}catch(e){return null}};
+const msg=(t,bad)=>{$('vMsg').textContent=t;$('vMsg').style.color=bad?'var(--ac)':'var(--ok)'};
+const derive=async(pw,s,it)=>{const k=await crypto.subtle.importKey('raw',enc.encode(pw),'PBKDF2',false,['deriveKey']);return crypto.subtle.deriveKey({name:'PBKDF2',salt:s,iterations:it,hash:'SHA-256'},k,{name:'AES-GCM',length:256},false,['encrypt','decrypt'])};
+async function seal(){const iv=crypto.getRandomValues(new Uint8Array(12)),ct=await crypto.subtle.encrypt({name:'AES-GCM',iv},key,enc.encode(JSON.stringify(items)));localStorage.setItem(SK,JSON.stringify({v:1,it:IT,salt:b64(salt),iv:b64(iv),ct:b64(new Uint8Array(ct))}))}
+function view(){['vSetup','vLock','vMain'].forEach(i=>$(i).hidden=true);$('vOff').hidden=okS;if(!okS)return;if(key)$('vMain').hidden=false;else $(rd()?'vLock':'vSetup').hidden=false}
+function lock(m){key=null;salt=null;items=[];['m1','m2','m3','vo','vp'].forEach(i=>$(i).value='');$('vList').innerHTML='';view();msg(m||'',0)}
+function bump(){clearTimeout(idle);if(key)idle=setTimeout(()=>lock('3分操作がなかったため自動ロックしました'),18e4)}
+['pointerdown','keydown','touchstart'].forEach(e=>addEventListener(e,bump,{passive:true}));
+document.addEventListener('visibilitychange',()=>{if(document.hidden)hid=setTimeout(()=>{if(key)lock('画面を離れたため自動ロックしました')},6e4);else clearTimeout(hid)});
+function render(){$('vCnt').textContent=items.length;$('vList').innerHTML=items.map(it=>`<div class="item" data-id="${it.id}"><b>${esc(it.org)}</b><span class="pw mono" aria-label="パスワードは非表示">••••••••</span><button class="btn" data-a="show" type="button">表示(5秒)</button><button class="btn" data-a="copy" type="button">コピー</button><button class="btn d" data-a="del" type="button">削除</button></div>`).join('')||'<p class="note">まだ登録がありません</p>'}
+$('vList').onclick=async e=>{const b=e.target.closest('button');if(!b)return;const row=b.closest('.item'),it=items.find(x=>x.id==row.dataset.id);if(!it)return;
+if(b.dataset.a=='show'){const s=row.querySelector('.pw');s.textContent=it.pw;setTimeout(()=>{s.textContent='••••••••'},5e3)}
+if(b.dataset.a=='copy')copy(it.pw,'vMsg');
+if(b.dataset.a=='del'){if(b.dataset.c!='1'){b.dataset.c='1';b.textContent='本当に削除';setTimeout(()=>{b.dataset.c='';b.textContent='削除'},4e3);return}
+items=items.filter(x=>x!=it);try{await seal();render();msg('削除しました',0)}catch(er){msg('保存に失敗しました',1)}}};
+$('vCreate').onclick=async()=>{const a=$('m1').value;if(a!=$('m2').value)return msg('2回の入力が一致しません',1);const r=analyze(a);if(a.length<12||r.lv<4)return msg('マスターパスワードは12文字以上で、判定が「安全」以上になるようにしてください(②で生成できます)',1);
+msg('作成中…(数秒かかります)',0);try{salt=crypto.getRandomValues(new Uint8Array(16));key=await derive(a,salt,IT);items=[];await seal();$('m1').value=$('m2').value='';view();render();bump();msg('保管庫を作成しました。マスターパスワードは忘れないでください',0)}catch(e){lock('作成に失敗しました')}};
+$('vOpen').onclick=async()=>{const pw=$('m3').value;msg('確認中…',0);try{const o=JSON.parse(rd());salt=ub(o.salt);const k=await derive(pw,salt,o.it||IT),pt=await crypto.subtle.decrypt({name:'AES-GCM',iv:ub(o.iv)},k,ub(o.ct));items=JSON.parse(dec.decode(pt));key=k;$('m3').value='';view();render();bump();msg('ロックを解除しました',0)}catch(e){salt=null;$('m3').value='';await new Promise(r=>setTimeout(r,1200));msg('マスターパスワードが違うか、データが壊れています',1)}};
+$('vAdd').onclick=async()=>{const o=$('vo').value.trim(),p=$('vp').value;if(!o||!p)return msg('機関名とパスワードを入力してください',1);if(items.length>=MAXN)return msg('登録は最大20件までです',1);
+items.push({id:Date.now().toString(36)+rnd(1e6),org:o,pw:p});try{await seal();$('vo').value=$('vp').value='';render();msg('暗号化して保存しました',0)}catch(e){items.pop();msg('保存に失敗しました',1)}};
+$('vGen').onclick=()=>{$('vp').value=$('go').value;$('vp').focus()};
+$('vLockNow').onclick=()=>lock('ロックしました');
+function wipe(btn){if(btn.dataset.c!='1'){btn.dataset.c='1';const t=btn.textContent;btn.textContent='本当に全削除(復元不可)';setTimeout(()=>{btn.dataset.c='';btn.textContent=t},4e3);return}
+try{localStorage.removeItem(SK)}catch(e){}lock('保管庫を削除しました');btn.dataset.c=''}
+$('vWipe').onclick=e=>wipe(e.currentTarget);$('vWipe0').onclick=e=>wipe(e.currentTarget);
+view();
+
+document.addEventListener('wipe-all',()=>{try{lock('')}catch(e){}try{clrCk()}catch(e){}$('go').value='';$('gMsg').textContent='';$('vp').value='';$('vo').value=''});
+})();
+</script>
+<script>
+(function(){
+const b=document.getElementById('bWipeAll'),t=document.getElementById('toast');
+const say=m=>{t.textContent=m;t.classList.add('show')};
+b.onclick=async()=>{
+if(b.dataset.c!='1'){b.dataset.c='1';const o=b.textContent;b.textContent='⚠️ もう一度押すと全消去(復元不可)';setTimeout(()=>{b.dataset.c='';b.textContent=o},5000);return}
+b.disabled=true;
+document.dispatchEvent(new Event('wipe-all'));
+document.querySelectorAll('input').forEach(i=>{if(i.type!='checkbox'&&i.type!='range')i.value=''});
+try{localStorage.clear()}catch(e){}
+try{sessionStorage.clear()}catch(e){}
+try{if(indexedDB.databases){const d=await indexedDB.databases();d.forEach(x=>indexedDB.deleteDatabase(x.name))}}catch(e){}
+try{if(window.caches){for(const k of await caches.keys())await caches.delete(k)}}catch(e){}
+try{if(navigator.serviceWorker){const r=await navigator.serviceWorker.getRegistrations();r.forEach(x=>x.unregister())}}catch(e){}
+try{document.cookie.split(';').forEach(c=>{const n=c.split('=')[0].trim();if(n)document.cookie=n+'=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/'})}catch(e){}
+try{await navigator.clipboard.writeText('')}catch(e){}
+say('このページが保存したデータをすべて消去しました。メモリも破棄するため再読み込みします');
+setTimeout(()=>{try{location.reload()}catch(e){b.disabled=false}},1500);
+};
+})();
+</script>
+<script>
+(function(){const t=document.getElementById('tbT'),b=document.getElementById('tbBody');
+function set(o){b.hidden=!o;t.setAttribute('aria-expanded',o);t.textContent=o?'⚙️ ツールを折りたたむ ▲':'⚙️ ツールを開く ▼'}
+set(!matchMedia('(max-width:640px)').matches);
+t.onclick=()=>set(b.hidden);
+document.addEventListener('keydown',e=>{if(e.key=='Escape'&&!b.hidden&&b.contains(document.activeElement)){set(false);t.focus()}});
+})();
+</script></body></html>
