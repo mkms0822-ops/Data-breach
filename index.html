@@ -2,6 +2,7 @@
 <html lang="ja"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#1e508c">
+<link rel="manifest" href="manifest.webmanifest">
 <meta name="application-name" content="KEEPSAFE">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -153,13 +154,12 @@ textarea.mono{width:100%;max-width:420px;box-sizing:border-box;font-size:14px;pa
 <div id="toast" role="status" aria-live="polite"></div>
 <dialog id="appDlg" aria-labelledby="appT"><h2 id="appT">📱 ホーム画面に追加(アプリのように使う)</h2>
 <h3>iPhone / iPad(Safari)</h3><p>共有ボタン →「ホーム画面に追加」を選びます。</p>
-<h3>Android(Chrome)</h3><p>右上のメニュー(︙)→「ホーム画面に追加」または「アプリをインストール」を選びます。</p>
-<h3>パソコン(Chrome / Edge)</h3><p>アドレスバー右のインストールボタン、またはメニューの「アプリとしてインストール」「ショートカットを作成」を選びます。</p>
+<h3>Android(Chrome)</h3><p>右上のメニュー(︙)→「アプリをインストール」を選びます。</p>
+<h3>パソコン(Chrome / Edge)</h3><p>アドレスバー右のインストールボタン、またはメニューの「アプリとしてインストール」を選びます。</p>
 <h3>知っておいてください</h3><ul>
-<li>配信形式の都合で、完全なアプリ機能(自動のオフライン保存など)には対応していません。ホーム画面のアイコンはこのページへのショートカットで、起動にはネット接続が必要です。</li>
-<li>iPhoneでは、ホーム画面から開いたときとSafariで開いたときで、保存領域が別になることがあります。保管庫を作った場所と違う側で開くと、保管庫は空に見えます。移すときは「機種変更:メールで送る」を使ってください。</li>
-<li>iPhoneは透明部分が黒くなるため、iPhone用のアイコンだけ透過なしにしています。他のアイコンは透過です。</li>
-<li>オフラインで使いたい場合は、HTMLファイルを端末に保存して、ブラウザで開いてください。</li></ul>
+<li>一度開くとアプリ本体(画面とアイコン)が端末に保存され、オフラインでも起動できます。保存されるのはアプリ本体だけで、入力したパスワードや保管庫の中身は含みません。</li>
+<li>iPhoneでは、ホーム画面から開いたときとSafariで開いたときで、保存領域が別になることがあります。移すときは「機種変更:メールで送る」を使ってください。</li>
+<li>「全データ消去」を押すと、保存データとアプリ本体のキャッシュも消えます。次に開いたとき、アプリ本体が再保存されます。</li></ul>
 <p><button class="btn" id="appClose" type="button">閉じる</button></p></dialog>
 <dialog id="priv" aria-labelledby="pt"><h2 id="pt">プライバシーポリシー</h2>
 <p>制定日:2026年10月10日</p>
@@ -422,4 +422,7 @@ document.addEventListener('keydown',e=>{if(e.key=='Escape'&&!b.hidden&&b.contain
 (function(){const l=document.querySelector('link[rel="icon"][sizes="192x192"]'),g=document.getElementById('appLogo');if(l&&g)g.src=l.href;
 const d=document.getElementById('appDlg');document.getElementById('bApp').onclick=()=>d.showModal?d.showModal():d.setAttribute('open','');
 document.getElementById('appClose').onclick=()=>d.close?d.close():d.removeAttribute('open')})();
+</script>
+<script>
+if('serviceWorker' in navigator&&/^https?:$/.test(location.protocol)){addEventListener('load',()=>{try{navigator.serviceWorker.register('sw.js').catch(()=>{})}catch(e){}})}
 </script></body></html>
