@@ -115,20 +115,19 @@ textarea.mono{width:100%;max-width:420px;box-sizing:border-box;font-size:14px;pa
 <label for="m1">マスターパスワード</label><br><input id="m1" type="password" autocomplete="off" class="mono"><br>
 <label for="m2">もう一度入力</label><br><input id="m2" type="password" autocomplete="off" class="mono">
 <div class="r"><button class="btn p" id="vCreate" type="button">保管庫を作成</button></div>
-<details><summary>📥 機種変更:古い端末の保管庫を取り込む</summary>
-<p class="note">古い端末で「暗号化データを表示」したテキストを貼り付け、古い端末で使っていたマスターパスワードを入力します。</p>
-<label for="xi">引っ越し用データ</label><br><textarea id="xi" class="mono" rows="4" autocomplete="off" spellcheck="false"></textarea><br>
+<details><summary>📥 機種変更:メールで受け取ったデータを取り込む</summary>
+<p class="note">受け取ったメールの本文を、そのまま貼り付けてください(余分な文章があっても大丈夫です)。</p>
+<label for="xi">メール本文</label><br><textarea id="xi" class="mono" rows="4" autocomplete="off" spellcheck="false"></textarea><br>
 <label for="xm">古い端末のマスターパスワード</label><br><input id="xm" type="password" autocomplete="off" class="mono">
 <div class="r"><button class="btn p" id="xImp" type="button">取り込む</button></div></details></div>
 <div id="vLock" hidden><label for="m3">マスターパスワード</label><br><input id="m3" type="password" autocomplete="off" class="mono">
 <div class="r"><button class="btn p" id="vOpen" type="button">ロック解除</button><button class="btn d" id="vWipe0" type="button">保管庫を全削除</button></div></div>
 <div id="vMain" hidden><p><b id="vCnt">0</b> / 20 件 <span class="note">(3分操作がない、または画面を1分以上離れると自動でロック)</span></p>
 <div id="vList"></div>
-<details><summary>📦 機種変更:書き出し(暗号化したまま)</summary>
-<p class="note">保管庫を<b>暗号文のまま</b>テキストとして表示します。新しい端末の「取り込み」に貼り付け、ここで使っているマスターパスワードを入力すると復元できます。ファイルは作りません。表示は60秒で自動で消えます。</p>
-<div class="warn">⚠️ 送る時は AirDrop・自分宛てのメッセージ等を使い、取り込み後は送信履歴やメモを必ず削除してください。マスターパスワードを一緒に送らないでください。古い端末は「全データ消去」で初期化してから手放しましょう。</div>
-<div class="r"><button class="btn" id="xBtn" type="button">暗号化データを表示</button><button class="btn" id="xCopy" type="button">コピー</button></div>
-<label for="xo">引っ越し用データ(暗号文)</label><br><textarea id="xo" class="mono" rows="4" readonly autocomplete="off" spellcheck="false"></textarea></details>
+<details><summary>📦 機種変更:メールで送る</summary>
+<p class="note">暗号化したデータをメール本文に差し込み、メール作成画面を開きます。宛先はご自身で入力(自分宛てなど)して送信してください。マスターパスワードは本文に書かないでください。</p>
+<div class="r"><button class="btn p" id="xMail" type="button">✉️ メールで送る</button><button class="btn" id="xCopy" type="button">開かない場合:本文をコピー</button></div>
+<p class="note">取り込み後は、送信済み・受信メールから削除してください。</p></details>
 <h3 style="font-size:15px">追加</h3>
 <label for="vo">機関名</label><br><input id="vo" type="text" maxlength="60" autocomplete="off"><br>
 <label for="vp">パスワード</label><br><input id="vp" type="password" autocomplete="off" class="mono">
@@ -137,7 +136,7 @@ textarea.mono{width:100%;max-width:420px;box-sizing:border-box;font-size:14px;pa
 <dialog id="pwInfo" aria-labelledby="pwIt"><h2 id="pwIt">安全性について(正直な限界)</h2>
 <h3>判定・生成</h3><p>どこにも保存しません。ただしコピーしたパスワードは、OSやキーボードのクリップボード履歴に残ることがあります。</p>
 <h3>保管庫</h3><ul><li>保存先はこのブラウザのローカルストレージで、中身は暗号文のみです。マスターパスワードと復号済みデータはメモリ上だけで扱い、ロックで破棄します(完全な消去までは保証できません)。</li><li>暗号化は PBKDF2-SHA256(60万回)と AES-256-GCM です。マスターパスワードが弱いと、暗号文を入手した人に総当たりされる恐れがあります。</li><li>ローカルストレージは平文では「安全な保管場所」ではありません。暗号化していても、次は防げません:キーボード記録などのマルウェア、悪意あるブラウザ拡張、画面の覗き見、ページ自体の改ざん。</li><li>ブラウザのデータ消去や別ブラウザ・別端末では消える/見えません。バックアップはありません。</li></ul>
-<h3>機種変更</h3><p>暗号文のままテキストで書き出し・取り込みできます(ファイルは作りません)。送信経路の履歴に暗号文が残るため、マスターパスワードが弱いと総当たりされるリスクが高まります。取り込み後は履歴を削除してください。</p>
+<h3>機種変更</h3><p>暗号化したデータをメール本文に差し込み、メール作成画面を開きます(送信先・送信はご自身で行います)。ファイルは作りません。メールの履歴に暗号文が残るため、マスターパスワードが弱いと総当たりされるリスクが高まります。取り込み後は、送信済み・受信メールを削除してください。</p>
 <h3>おすすめ</h3><p>重要なアカウントには、OSやブラウザ標準のキーチェーン、信頼できるパスワードマネージャー、パスキー、多要素認証を使ってください。本ツールは補助的な用途向けです。</p>
 <p><button class="btn" id="pwIClose" type="button">閉じる</button></p></dialog></section>
 </main>
@@ -146,7 +145,7 @@ textarea.mono{width:100%;max-width:420px;box-sizing:border-box;font-size:14px;pa
 <p>制定日:2026年10月10日</p>
 <h3>1. 取得する情報</h3><p>本ページは、閲覧者の個人情報を収集・送信しません。Cookie、アクセス解析、広告、外部サービスへの通信は使用していません。</p>
 <h3>2. 端末内への保存</h3><p>表示設定(ライト/ダークモード、文字サイズ)を、お使いのブラウザ内(ローカルストレージ)に保存することがあります。外部へは送信されません。</p><p>パスワードツールの「判定」「生成」は、入力・結果を保存しません。「保管庫」を作成した場合のみ、マスターパスワードで暗号化した暗号文(機関名とパスワード、最大20件)を、このブラウザのローカルストレージ(キー名 pwvault.v1)に保存します。マスターパスワードは保存されません。削除はヘッダーの「全データ消去」、保管庫の「全削除」、またはブラウザの設定から行えます。ただしOSのクリップボード履歴やブラウザの閲覧履歴など、ページの外にあるデータは消去できません。ただし端末内の保存は絶対に安全とは言えないため、重要なパスワードは専用のパスワードマネージャー等をご利用ください。</p>
-<h3>3. 共有・コピー・印刷</h3><p>これらの操作はお使いの端末内で実行されます。共有時の情報の取り扱いは、共有先のサービスのポリシーに従います。</p>
+<h3>3. 共有・コピー・印刷</h3><p>これらの操作はお使いの端末内で実行されます。共有時の情報の取り扱いは、共有先のサービスのポリシーに従います。機種変更では、暗号化した保管庫データをお使いのメールアプリの作成画面に差し込みます(送信先の指定と送信はご自身で行います)。</p>
 <h3>4. 掲載情報について</h3><ul><li>公開されている報道・公式発表に基づく情報です。</li><li>件数・時期・内容は報道時点のもので、訂正・更新される場合があります。</li><li>攻撃者側の主張は「主張」と表示し、確認済みの情報と区別しています。</li><li>正確性・完全性は保証しません。重要な判断の前に、各組織の公式発表をご確認ください。</li></ul>
 <h3>5. 配信基盤</h3><p>本ページはClaudeのアーティファクトとして配信されており、配信基盤側で通常のアクセス記録が取得される場合があります。その取り扱いはAnthropicのプライバシーポリシーに従います。</p>
 <h3>6. 改定</h3><p>本ポリシーは予告なく改定することがあります。</p>
@@ -338,7 +337,7 @@ const msg=(t,bad)=>{$('vMsg').textContent=t;$('vMsg').style.color=bad?'var(--ac)
 const derive=async(pw,s,it)=>{const k=await crypto.subtle.importKey('raw',enc.encode(pw),'PBKDF2',false,['deriveKey']);return crypto.subtle.deriveKey({name:'PBKDF2',salt:s,iterations:it,hash:'SHA-256'},k,{name:'AES-GCM',length:256},false,['encrypt','decrypt'])};
 async function seal(){const iv=crypto.getRandomValues(new Uint8Array(12)),ct=await crypto.subtle.encrypt({name:'AES-GCM',iv},key,enc.encode(JSON.stringify(items)));localStorage.setItem(SK,JSON.stringify({v:1,it:IT,salt:b64(salt),iv:b64(iv),ct:b64(new Uint8Array(ct))}))}
 function view(){['vSetup','vLock','vMain'].forEach(i=>$(i).hidden=true);$('vOff').hidden=okS;if(!okS)return;if(key)$('vMain').hidden=false;else $(rd()?'vLock':'vSetup').hidden=false}
-function lock(m){key=null;salt=null;items=[];['m1','m2','m3','vo','vp','xo','xi','xm'].forEach(i=>$(i).value='');$('vList').innerHTML='';view();msg(m||'',0)}
+function lock(m){key=null;salt=null;items=[];['m1','m2','m3','vo','vp','xi','xm'].forEach(i=>$(i).value='');$('vList').innerHTML='';view();msg(m||'',0)}
 function bump(){clearTimeout(idle);if(key)idle=setTimeout(()=>lock('3分操作がなかったため自動ロックしました'),18e4)}
 ['pointerdown','keydown','touchstart'].forEach(e=>addEventListener(e,bump,{passive:true}));
 document.addEventListener('visibilitychange',()=>{if(document.hidden)hid=setTimeout(()=>{if(key)lock('画面を離れたため自動ロックしました')},6e4);else clearTimeout(hid)});
@@ -360,10 +359,13 @@ try{localStorage.removeItem(SK)}catch(e){}lock('保管庫を削除しました')
 $('vWipe').onclick=e=>wipe(e.currentTarget);$('vWipe0').onclick=e=>wipe(e.currentTarget);
 view();
 
-let xt;
-$('xBtn').onclick=()=>{const v=rd();if(!v)return msg('書き出す保管庫がありません',1);$('xo').value='PWV1:'+btoa(v);msg('暗号化した引っ越しデータを表示しました。60秒後に自動で消します',0);clearTimeout(xt);xt=setTimeout(()=>{$('xo').value=''},6e4)};
-$('xCopy').onclick=()=>{if(!$('xo').value)return msg('先に「暗号化データを表示」を押してください',1);copy($('xo').value,'vMsg')};
-$('xImp').onclick=async()=>{try{if(rd())throw 1;const t=$('xi').value.trim();if(t.indexOf('PWV1:')!=0)throw 2;const s=atob(t.slice(5)),o=JSON.parse(s),k=await derive($('xm').value,ub(o.salt),o.it||IT),pt=await crypto.subtle.decrypt({name:'AES-GCM',iv:ub(o.iv)},k,ub(o.ct)),a=JSON.parse(dec.decode(pt));if(!Array.isArray(a)||a.length>MAXN)throw 3;localStorage.setItem(SK,s);$('xi').value='';$('xm').value='';view();msg('取り込みました。古い端末と同じマスターパスワードでロック解除できます',0)}catch(e){msg('取り込めません。貼り付けミス、マスターパスワード違い、あるいはこの端末に既に保管庫がある可能性があります',1)}};
+const b64u=u=>btoa(String.fromCharCode(...u)).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');
+const fb64u=s=>{s=s.replace(/-/g,'+').replace(/_/g,'/');while(s.length%4)s+='=';return ub(s)};
+async function pack(){const iv=crypto.getRandomValues(new Uint8Array(12)),ct=new Uint8Array(await crypto.subtle.encrypt({name:'AES-GCM',iv},key,enc.encode(JSON.stringify(items.map(x=>[x.org,x.pw])))));const o=new Uint8Array(32+ct.length);new DataView(o.buffer).setUint32(0,IT);o.set(salt,4);o.set(iv,20);o.set(ct,32);return 'PWV2:'+b64u(o)+':END2'}
+const mailBody=d=>'※暗号化済みの引っ越しデータです。マスターパスワードはこのメールに書かないでください。\n新しい端末の「機種変更:取り込み」に、このメール本文を貼り付けてください。\n\n'+d+'\n\n※取り込み後は、このメールと送信済みメールを削除してください。';
+$('xMail').onclick=async()=>{if(!key)return msg('先にロックを解除してください',1);try{const a=document.createElement('a');a.href='mailto:?subject='+encodeURIComponent('パスワード保管庫の引っ越しデータ(暗号化済み)')+'&body='+encodeURIComponent(mailBody(await pack()).replace(/\n/g,'\r\n'));a.rel='noopener';document.body.appendChild(a);a.click();a.remove();msg('メール作成画面を開きます。宛先を入力して送信してください。開かない場合は「本文をコピー」を使ってください',0)}catch(e){msg('データを作成できませんでした',1)}};
+$('xCopy').onclick=async()=>{if(!key)return msg('先にロックを解除してください',1);try{copy(mailBody(await pack()),'vMsg')}catch(e){msg('データを作成できませんでした',1)}};
+$('xImp').onclick=async()=>{try{if(rd())throw 1;const m=$('xi').value.match(/PWV2:([\s\S]*?):END2/);if(!m)throw 2;const u=fb64u(m[1].replace(/[^A-Za-z0-9_-]/g,'')),it=new DataView(u.buffer,0,4).getUint32(0);if(it!=IT)throw 3;const sa=u.slice(4,20),k=await derive($('xm').value,sa,it),pt=await crypto.subtle.decrypt({name:'AES-GCM',iv:u.slice(20,32)},k,u.slice(32)),a=JSON.parse(dec.decode(pt));if(!Array.isArray(a)||a.length>MAXN)throw 4;salt=sa;key=k;items=a.map(r=>({id:Date.now().toString(36)+rnd(1e6),org:String(r[0]),pw:String(r[1])}));await seal();lock('取り込みました。古い端末と同じマスターパスワードでロック解除してください')}catch(e){key=null;salt=null;items=[];msg('取り込めません。貼り付けミス、マスターパスワードの違い、またはこの端末に既に保管庫がある可能性があります',1)}};
 document.addEventListener('wipe-all',()=>{try{lock('')}catch(e){}try{clrCk()}catch(e){}$('go').value='';$('gMsg').textContent='';$('vp').value='';$('vo').value=''});
 })();
 </script>
